@@ -1,0 +1,45 @@
+﻿@model FlossMVCApp.Models.Company
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.CompanyId)
+        <fieldset>
+            <legend>Company</legend>
+            <div class="input-control text size2" data-role="input-control">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="input-control text size3" data-role="input-control">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "type text" } })
+                <button class="btn-clear" tabindex="-1" type="button"></button>
+            </div>
+            <div class="input-control text size2" data-role="input-control">
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-control text size1 block place-right" data-role="input-control">
+                <input type="submit" value="Save" class="success">
+            </div>
+        </fieldset>
+
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "button danger" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

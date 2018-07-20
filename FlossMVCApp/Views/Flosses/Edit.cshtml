@@ -1,0 +1,99 @@
+﻿@model FlossMVCApp.Models.Floss
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.FlossId)
+    <div class="form-horizontal">
+        <fieldset>
+            <legend>Floss</legend>
+            <div class="form-group">
+                <div class="input-control text size2" data-role="input-control">
+                    @Html.LabelFor(model => model.Number, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="input-control text size3" data-role="input-control">
+                    @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control", placeholder = "type number" } })
+                    <button class="btn-clear" tabindex="-1" type="button"></button>
+                </div>
+                <div class="input-control text size2" data-role="input-control">
+                    @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="input-control text size2" data-role="input-control">
+                    @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="input-control text size3" data-role="input-control">
+                    @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control", placeholder = "type color" } })
+                    <button class="btn-clear" tabindex="-1" type="button"></button>
+                </div>
+                <div class="input-control text size2" data-role="input-control">
+                    @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="input-control text size2" data-role="input-control">
+                    @Html.LabelFor(model => model.CompanyId, "Company", htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="input-control size3 select" data-role="input-control">
+                    @Html.DropDownList("CompanyId", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="input-control text size2" data-role="input-control">
+                    @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-control text size2" data-role="input-control">
+                    @Html.LabelFor(model => model.Skein, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="input-control text size3" data-role="input-control">
+                    @Html.EditorFor(model => model.Skein, new { htmlAttributes = new { @class = "form-control", placeholder = "type skein", value = "@Model.Skein" } })
+                    <button class="btn-clear" tabindex="-1" type="button"></button>
+                </div>
+                <div class="input-control text size2" data-role="input-control">
+                    @Html.ValidationMessageFor(model => model.Skein, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-control text size2" data-role="input-control">
+                    @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="input-control size3 textarea" data-role="input-control">
+                    @Html.TextAreaFor(model => model.Comment, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="input-control text size2" data-role="input-control">
+                    @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+        </fieldset>
+
+    </div>
+        <div class="input-control text size1 block place-right" data-role="input-control">
+            <input type="submit" value="Save" class="success">
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "button danger" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
